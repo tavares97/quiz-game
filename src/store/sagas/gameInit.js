@@ -1,11 +1,20 @@
-import { call, cancel, fork, put, take } from 'redux-saga/effects';
-import { fetchQuiz } from '../../utils/api';
+import { call, cancel, fork, put, take, select } from 'redux-saga/effects';
+import { fetchQuizGames, fetchQuizAnime } from '../../utils/api';
 import { cancelGame, startGame } from '../slices/gameInit';
 import { fetchQuestionsFail, fetchQuestionsSuccess } from '../slices/quiz';
 
 function* fetchQuestions() {
 	try {
-		const data = yield call(fetchQuiz);
+		const type = state => state.gameState.type;
+		const gameType = yield select(type);
+		let data;
+
+		if (gameType === 'Games') {
+			data = yield call(fetchQuizGames);
+		} else {
+			data = yield call(fetchQuizAnime)
+		}
+
 		yield put(fetchQuestionsSuccess(data.results));
 	} catch (error) {
 		yield put(

@@ -5,6 +5,7 @@ import { fetchQuestionsFail, fetchQuestionsSuccess } from './quiz';
 const initialState = {
 	stage: stages.START_GAME,
 	username: '',
+	type: null,
 };
 
 const gameState = createSlice({
@@ -14,6 +15,7 @@ const gameState = createSlice({
 		startGame(state, action) {
 			state.username = action.payload.username;
 			state.stage = stages.FETCHING_GAME;
+			state.type = action.payload.gameType;
 		},
 		cancelGame(state) {
 			state.stage = stages.START_GAME;
