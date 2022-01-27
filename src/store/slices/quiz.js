@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { restartGame } from './gameInit';
 
 const initialState = {
 	questions: [],
@@ -35,6 +36,14 @@ const quizSlice = createSlice({
 		nextQuestion(state) {
 			state.currentQuestionIndex += 1;
 		},
+	},
+	extraReducers: builder => {
+		builder.addCase(restartGame, state => {
+			state.questions = [];
+			state.answers = [];
+			state.score = 0;
+			state.currentQuestionIndex = 0;
+		});
 	},
 });
 
