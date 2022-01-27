@@ -1,5 +1,8 @@
-import { combineReducers } from "redux";
+import { combineReducers } from 'redux';
+import gameState from './slices/gameInit';
+import quiz from './slices/quiz';
 
-export const combineReducers({
-  
-})
+export default combineReducers({
+	gameState,
+	quiz,
+});

@@ -1,7 +1,7 @@
 import React from 'react';
 
 const EndGamePage = () => {
-  return <div></div>;
+	return <div>GAme Ended</div>;
 };
 
 export default EndGamePage;
