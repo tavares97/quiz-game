@@ -23,7 +23,7 @@ const StartGamePage = () => {
 				type='radio'
 				value={gameType}
 				name='Video Games'
-				checked={gameType == 'Games'}
+				checked={gameType === 'Games'}
 				onChange={() => setGameType('Games')}
 			/>
 			Video Games
@@ -31,7 +31,7 @@ const StartGamePage = () => {
 				type='radio'
 				value={gameType}
 				name='Anime'
-				checked={gameType == 'Anime'}
+				checked={gameType === 'Anime'}
 				onChange={() => setGameType('Anime')}
 			/>
 			Anime
