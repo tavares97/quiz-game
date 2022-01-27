@@ -21,6 +21,9 @@ const gameState = createSlice({
 		finnishGame(state) {
 			state.stage = stages.END_GAME;
 		},
+		restartGame(state) {
+			state.stage = stages.START_GAME;
+		},
 	},
 	//THIS PART REFERENCES TO 'EXTERNAL' ACTIONS
 	/**
@@ -38,6 +41,7 @@ const gameState = createSlice({
 	},
 });
 
-export const { startGame, cancelGame, finnishGame } = gameState.actions;
+export const { startGame, cancelGame, finnishGame, restartGame } =
+	gameState.actions;
 
 export default gameState.reducer;

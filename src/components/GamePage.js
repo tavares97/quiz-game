@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { answerQuestion } from '../store/slices/quiz';
@@ -23,15 +23,28 @@ const GamePage = () => {
 		dispatch(finnishGame());
 	};
 
+	const [timeLeft, setTimeLeft] = useState(60);
+
+	useEffect(() => {
+		const interval = setInterval(() => {
+			setTimeLeft(prev => prev - 1);
+		}, 1000);
+
+		return () => {
+			clearInterval(interval);
+		};
+	}, []);
+
 	return (
 		<div>
+			<p>Time Left: {timeLeft}</p>
 			<p>Score: {score}</p>
 			<p>{currentQuestionIndex}/10</p>
 			<p dangerouslySetInnerHTML={{ __html: currentQuestion }}></p>
 
 			<button onClick={() => answerQuestionHandler('True')}>True</button>
 			<button onClick={() => answerQuestionHandler('False')}>False</button>
-			<button onClick={() => endGameHandler()}>Finish game</button>
+			<button onClick={() => endGameHandler()}>Finnish game</button>
 		</div>
 	);
 };
